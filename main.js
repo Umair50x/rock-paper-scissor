@@ -31,32 +31,34 @@ function computerChoice () {
     let choiceArray = ['rock', 'paper', 'scissor']; 
     //randomly take one string from the three options
     let randomChoice = Math.floor(Math.random() * choiceArray.length)
-    // console.log(choiceArray[randomChoice]);
+    console.log(choiceArray[randomChoice]);
     //execute the random selector inside the array to return a choice
     return choiceArray[randomChoice];
-    // console.log();
 }
 
 // computerChoice();
 
 //one round of the game
-function playRound (playerSelection, computerChoice) {
-        let result;
+function playRound (playerSelection) {
+    
+        const computer_Choice = computerChoice();
         playerSelection = rps;
-        console.log(playerSelection);
-        if (playerSelection == computerChoice ) {
-            result = "Match Tied. Play again.";
-        } else if (playerSelection == "rock" && computerChoice == "scissor") {
-            result = "You win! Rock thrashed scissor.";
-        } else if (playerSelection == "paper" && computerChoice == "rock") {
-            result = "You win! Rock was contained by paper.";
-        } else if (playerSelection == "scissor" && computerChoice == "paper") {
-            result = "You win! Scissor cut paper.";
+        if (playerSelection === computer_Choice) {
+
+            return "Match Tied. Play again.";
+        } else if (playerSelection == "rock" && computer_Choice === "scissor") {
+
+            return "You win! Rock thrashed scissor.";
+        } else if (playerSelection == "paper" && computer_Choice === "rock") {
+
+            return "You win! Rock was contained by paper.";
+        } else if (playerSelection == "scissor" && computer_Choice === "paper") {
+
+            return "You win! Scissor cut paper.";
         } else {
-            result = `You lose! ${computerChoice} beat ${playerSelection}`;
+
+            return `You lose! ${computer_Choice} beat ${playerSelection}`;
         }
-    // playerSelection == computerChoice ? "That is a tie." : decision(); 
-    return result;
 }
 
 console.log(playRound());
