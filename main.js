@@ -22,45 +22,48 @@ and outputs the result of the matches
 
 */
 
-
-//take input from the user/player
-var rps = prompt("Rock, paper or scissor?");
-
 //random computer choice
 function computerChoice () {
+
+    // return ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)]; do this in one line as told by ChatGPT hehe
+    
     let choiceArray = ['rock', 'paper', 'scissor']; 
     //randomly take one string from the three options
     let randomChoice = Math.floor(Math.random() * choiceArray.length)
-    console.log(choiceArray[randomChoice]);
+    console.log(choiceArray[randomChoice]);// this is just to make sure
     //execute the random selector inside the array to return a choice
     return choiceArray[randomChoice];
 }
 
-// computerChoice();
-
 //one round of the game
-function playRound (playerSelection) {
-    
-        const computer_Choice = computerChoice();
-        playerSelection = rps;
-        if (playerSelection === computer_Choice) {
+function playRound (playerSelection, computer_choice) {
+
+        // const computer_Choice = computerChoice();
+        computer_choice = computer_choice.toLowerCase();
+        playerSelection = playerSelection.toLowerCase();
+        //if else if for comparison between the choices; Note: currently, the text needs to be accurately spelled.
+        if (playerSelection === computer_choice) {
 
             return "Match Tied. Play again.";
-        } else if (playerSelection == "rock" && computer_Choice === "scissor") {
+        } else if (playerSelection === "rock" && computer_choice === "scissor") {
 
             return "You win! Rock thrashed scissor.";
-        } else if (playerSelection == "paper" && computer_Choice === "rock") {
+        } else if (playerSelection === "paper" && computer_choice === "rock") {
 
             return "You win! Rock was contained by paper.";
-        } else if (playerSelection == "scissor" && computer_Choice === "paper") {
+        } else if (playerSelection === "scissor" && computer_choice === "paper") {
 
             return "You win! Scissor cut paper.";
         } else {
-
-            return `You lose! ${computer_Choice} beat ${playerSelection}`;
+            //in every other case it automatically makes you the loser.
+            return `You lose! ${computer_choice} beat ${playerSelection}`;
         }
 }
 
-console.log(playRound());
+//take input from the user/player
+let playerSelection = prompt("Rock, paper or scissor?"); 
+let computer_choice = computerChoice();
+
+console.log(playRound(playerSelection, computer_choice));
 
 
