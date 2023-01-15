@@ -45,28 +45,28 @@ function computerChoice () {
 }
 
 //one round of the game
-function playRound (playerSelection, computer_choice) {
+function playRound (player_selection, computer_choice) {
 
         // const computer_Choice = computerChoice();
-        computer_choice = computer_choice.toLowerCase();
-        playerSelection = playerSelection.toLowerCase();
+        // computer_choice = computer_choice.toLowerCase(); //lower only for consistency
+        // player_selection = player_selection.toLowerCase();
         
         //if else if for comparison between the choices; Note: currently, the text needs to be accurately spelled.
-        if ( playerSelection === computer_choice) {
+        if ( player_selection === computer_choice) {
             return `Match Tied! You both chose ${computer_choice}.`;
-        } else if ( playerSelection === 'rock' ) {
+        } else if ( player_selection === 'rock' ) {
             if ( computer_choice === 'scissors' ) {
                 return 'You win! your rock thrashed scissors.' ;
             } else {
                 return 'You lose! Paper contained your rock.' ;
             }
-        } else if ( playerSelection === 'paper' ) {
+        } else if ( player_selection === 'paper' ) {
             if ( computer_choice === 'rock' ) {
                 return 'You win! Your Paper contained rock.' ;
             } else {
                 return 'You lose! Scissors cut your paper.' ;
             }
-        } else if ( playerSelection === 'scissors' ) {
+        } else if ( player_selection === 'scissors' ) {
             if ( computer_choice === 'paper' ) {
                 return 'You win! scissors cut paper.' ;
             } else {
@@ -76,30 +76,48 @@ function playRound (playerSelection, computer_choice) {
             return 'Invalid choice. Please only select rock, paper or scissors.';
         }
 
-        // if (playerSelection === computer_choice) {
+        // if (player_selection === computer_choice) {
         //     return "Match Tied. Play again.";
 
-        // } else if (playerSelection === "rock" && computer_choice === "scissors") {
+        // } else if (player_selection === "rock" && computer_choice === "scissors") {
         //     return "You win! Rock thrashed scissors.";
 
-        // } else if (playerSelection === "paper" && computer_choice === "rock") {
+        // } else if (player_selection === "paper" && computer_choice === "rock") {
         //     return "You win! Rock was contained by paper.";
 
-        // } else if (playerSelection === "scissors" && computer_choice === "paper") {
+        // } else if (player_selection === "scissors" && computer_choice === "paper") {
         //     return "You win! Scissor cut paper.";
 
         // } else {
         //     //in every other case it automatically makes you the loser.
-        //     return `You lose! ${computer_choice} beat ${playerSelection}`;
+        //     return `You lose! ${computer_choice} beat ${player_selection}`;
         // }
 
 }
 
-//take input from the user/player
-let playerSelection = prompt("Rock, paper or scissors?", ""); 
-let computer_choice = computerChoice();
+function game() {
+    let userWins = 0;
+    let computerWins = 0;
+    let ties = 0;
 
-console.log(playRound(playerSelection, computer_choice));
-// console.log('Your choice was' + ' ' + playerSelection); //just to check any problem
+    for ( let i = 1; i <= 5; i++ ) {
+        let player_selection = prompt('Round ' + i + ': Rock, Paper or Scissors?', '').toLowerCase();
+        let computer_choice = computerChoice().toLowerCase();
+        let result = playRound(player_selection, computer_choice);
+        console.log(result);
+        
+    }
+
+}
+
+
+console.log(game());
+
+//take input from the user/player
+// let player_selection = prompt("Rock, paper or scissors?", ""); 
+// let computer_choice = computerChoice();
+
+// console.log(playRound(player_selection, computer_choice));
+// console.log('Your choice was' + ' ' + player_selection); //just to check any problem
 
 
