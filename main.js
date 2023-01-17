@@ -34,12 +34,15 @@ post the total results i.e. user wins, comp wins and ties.
 //random computer choice
 function computerChoice () {
 
-    // return ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)]; do this in one line as told by ChatGPT hehe
+    // return ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)]; do this in one line as told by ChatGPT; hehe
     
     let choiceArray = ['rock', 'paper', 'scissors']; 
+
     //randomly take one string from the three options
     let randomChoice = Math.floor(Math.random() * choiceArray.length)
-    console.log('the computer choice was' + ' ' + choiceArray[randomChoice]);// this is just to make sure
+
+    console.log('FYI the computer choice was' + ' ' + choiceArray[randomChoice]);// this is just to make sure
+
     //execute the random selector inside the array to return a choice
     return choiceArray[randomChoice]; //remember this is going to return an array
 }
@@ -48,12 +51,12 @@ function computerChoice () {
 function playRound (player_selection, computer_choice) {
 
         // const computer_Choice = computerChoice();
-        // computer_choice = computer_choice.toLowerCase(); //lower only for consistency
+        // computer_choice = computer_choice.toLowerCase(); //lowercase only for consistency
         // player_selection = player_selection.toLowerCase();
         
         //if else if for comparison between the choices; Note: currently, the text needs to be accurately spelled.
         if ( player_selection === computer_choice) {
-            return `Match Tied! You both chose ${computer_choice}.`;
+            return `Match tied! You both chose ${computer_choice}.`;
         } else if ( player_selection === 'rock' ) {
             if ( computer_choice === 'scissors' ) {
                 return 'You win! your rock thrashed scissors.' ;
@@ -96,22 +99,53 @@ function playRound (player_selection, computer_choice) {
 }
 
 function game() {
+
+        //initializing the counters
     let userWins = 0;
     let computerWins = 0;
     let ties = 0;
+    let i = 0;
 
-    for ( let i = 1; i <= 5; i++ ) {
+        //looping a single round several times to make a whole game
+    for ( let i = 1; i <= 3; i++ ) {
+
         let player_selection = prompt('Round ' + i + ': Rock, Paper or Scissors?', '').toLowerCase();
         let computer_choice = computerChoice().toLowerCase();
-        let result = playRound(player_selection, computer_choice);
-        console.log(result);
-        
-    }
 
+            //a single round will be played and saved in the variale result
+        let result = playRound(player_selection, computer_choice);
+        
+                //ifelse{} will find a particular word from the result of the ifelse{} of the playround() to decide & icrement the relevant counter
+
+            if (result.indexOf('win!') !== -1 ) {
+                userWins++;
+            } else if ( result.indexOf('lose!') !== -1 ) {
+                computerWins++;
+            } else if ( result.indexOf('tied!') !== -1 ) {
+                ties++;
+            // } else {
+            //     return 'none of the above.';    // may not work, try logging it to console
+            // }
+        }
+        console.log(result);
+    }
+            //print the data to the console
+        console.log('Player wins: ' + userWins);
+        console.log('Computer wins: ' + computerWins);
+        console.log('Ties: ' + ties);
+        
+            // two line ternary-checking decides the winner
+        userWins > computerWins ? console.log(`You win! ${userWins} out of ${i} total rounds .`) : userWins < computerWins ? 
+        console.log(`Computer won the game with ${computerWins} out of ${i} total rounds.`) : console.log(`Game tied with ${ties}.`);
+        console.log();
 }
 
-
 console.log(game());
+
+
+
+
+
 
 //take input from the user/player
 // let player_selection = prompt("Rock, paper or scissors?", ""); 
