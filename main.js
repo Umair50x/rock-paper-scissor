@@ -41,7 +41,7 @@ function computerChoice () {
     //randomly take one string from the three options
     let randomChoice = Math.floor(Math.random() * choiceArray.length)
 
-    console.log('FYI the computer choice was' + ' ' + choiceArray[randomChoice]);// this is just to make sure
+    // console.log('FYI the computer choice was' + ' ' + choiceArray[randomChoice]);// this is just to make sure
 
     //execute the random selector inside the array to return a choice
     return choiceArray[randomChoice]; //remember this is going to return an array
@@ -104,10 +104,10 @@ function game() {
     let userWins = 0;
     let computerWins = 0;
     let ties = 0;
-    let i = 0;
+    let rounds = 5;
 
         //looping a single round several times to make a whole game
-    for ( let i = 1; i <= 3; i++ ) {
+    for ( let i = 1; i <= rounds; i++ ) {
 
         let player_selection = prompt('Round ' + i + ': Rock, Paper or Scissors?', '').toLowerCase();
         let computer_choice = computerChoice().toLowerCase();
@@ -135,8 +135,26 @@ function game() {
         console.log('Ties: ' + ties);
         
             // two line ternary-checking decides the winner
-        userWins > computerWins ? console.log(`You win! ${userWins} out of ${i} total rounds .`) : userWins < computerWins ? 
-        console.log(`Computer won the game with ${computerWins} out of ${i} total rounds.`) : console.log(`Game tied with ${ties}.`);
+            if ( userWins > computerWins && userWins > ties) {
+                console.log('You won the game.');
+            } else if ( computerWins > userWins && computerWins > ties ) {
+                console.log('You lost the game to Computer.');
+            } else {
+                console.log('Game tied. Play again.');
+            }
+
+// make a logic for the below test
+//  You lose! Paper contained your rock.
+//  You win! Your Paper contained rock.
+//  You lose! Scissors cut your paper.
+//  Match tied! You both chose paper.
+//  Player wins: 1
+//  Computer wins: 2
+//  Ties: 2
+//  Game tied. Play again.
+
+        // userWins > computerWins ? console.log(`You win! ${userWins} out of ${rounds} total rounds .`) : userWins < computerWins ? 
+        // console.log(`Computer won the game with ${computerWins} out of ${rounds} total rounds.`) : console.log(`Game tied with ${ties} round tied.`);
         console.log();
 }
 
