@@ -5,7 +5,7 @@ function computerChoice () {
     return choiceArray[randomChoice];
 }
 
-//one round of the game rock paper scissors
+//one round of the game "rock paper scissors"
 function playRound (player_selection, computer_choice) {
 
     if ( player_selection === computer_choice) {
@@ -30,13 +30,15 @@ function playRound (player_selection, computer_choice) {
         }
     } else {
         return 'Invalid choice. Please only select rock, paper or scissors.';
-    }
-}
+    }//if statement ends here
 
-//the full game for i amount of times 
+}//function playround() ends
+
+
+//the full game for "i" amount of rounds 
 function game() {
 
-    //explain here why initialized the variales
+    //  w/o initializing the variables, their value will be 'undefined' and we cant start with an undefined value. 
     let userWins = 0;
     let computerWins = 0;
     let ties = 0;
@@ -55,8 +57,10 @@ function game() {
             computerWins++;
         } else if ( result.indexOf('tied!') !== -1 ) {
             ties++;
+        }
         console.log(result);
-    }
+    }//for loop ends
+
     console.log('Player wins: ' + userWins);
     console.log('Computer wins: ' + computerWins);
     console.log('Ties: ' + ties);
@@ -67,11 +71,14 @@ function game() {
         console.log('You lost the game to Computer.');
     } else {
         console.log('Game tied. Play again.');
-    }
-    //score comparison logic needs to be refined here for several different test cases.
+    }//if statement ends here
+    
+    //score comparison logic needs to be refined here for several differents test cases.
 
     console.log();
-}
+
+}//function game() ends
+
 
 console.log(game());
 
